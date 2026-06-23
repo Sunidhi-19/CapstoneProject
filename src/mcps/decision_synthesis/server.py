@@ -73,6 +73,72 @@ def calculate_confidence_level(risk_score: float) -> float:
     return round(1.0 - (risk_score / 100), 2)
 
 
+def generate_decision_reason(classification: str, risk_score: float, profile_analysis: dict, risk_analysis: dict) -> str:
+    """Generate detailed reason for loan decision following testdata format."""
+    reasons = []
+
+    credit_score = profile_analysis.get("credit_history", {}).get("score", 0)
+    dti = risk_analysis.get("debt_to_income_ratio", 0)
+    employment_risk = profile_analysis.get("employment_risk", "")
+    anomalies = risk_analysis.get("anomalies_detected", [])
+
+    if classification == "Approve":
+        # Positive factors
+        if credit_score >= 750:
+            reasons.append(f"Excellent credit score ({credit_score})")
+        elif credit_score >= 700:
+            reasons.append(f"Strong credit score ({credit_score})")
+
+        if dti <= 30:
+            reasons.append(f"Low monthly liability ratio ({dti:.1f}%)")
+        elif dti <= 36:
+            reasons.append(f"Acceptable monthly liability ratio ({dti:.1f}%)")
+
+        if employment_risk == "Low":
+            reasons.append("Stable employment history")
+
+        reason_text = ", ".join(reasons) if reasons else "Meets all approval criteria"
+        return f"{reason_text}"
+
+    elif classification == "Reject":
+        # Red flags
+        if credit_score < 650:
+            reasons.append(f"Poor credit score ({credit_score})")
+
+        if dti > 40:
+            reasons.append(f"Very high monthly liability ratio ({dti:.1f}%)")
+        elif dti > 50:
+            reasons.append(f"Excessive monthly liability ratio ({dti:.1f}%)")
+
+        if employment_risk in ["High", "Medium"]:
+            reasons.append(f"{employment_risk.lower()} employment stability")
+
+        if anomalies:
+            reasons.append(f"{len(anomalies)} financial anomalies detected")
+
+        reason_text = ", ".join(reasons) if reasons else "Does not meet approval criteria"
+        return f"{reason_text}"
+
+    else:  # Review
+        # Borderline factors
+        if 650 <= credit_score < 750:
+            reasons.append(f"Borderline credit score ({credit_score})")
+
+        if 30 < dti <= 40:
+            reasons.append(f"Elevated monthly liability ratio ({dti:.1f}%)")
+        elif dti > 40:
+            reasons.append(f"High monthly liability ratio ({dti:.1f}%)")
+
+        if employment_risk == "Medium":
+            reasons.append("Recent employment changes or self-employed status")
+
+        if anomalies:
+            reasons.append(f"Some financial anomalies require verification")
+
+        reason_text = ", ".join(reasons) if reasons else "Requires manual verification"
+        return f"{reason_text} — requires manual underwriter assessment"
+
+
 def extract_key_factors(profile_analysis: dict, risk_analysis: dict) -> list:
     """Extract key decision factors from analysis."""
     factors = []
@@ -142,6 +208,9 @@ def synthesize_loan_decision(applicant_data: str, profile_analysis: str, risk_an
         # Extract key factors
         key_factors = extract_key_factors(profile, risk)
 
+        # Generate detailed decision reason
+        decision_reason = generate_decision_reason(classification, risk_score, profile, risk)
+
         result = {
             "applicant_id": data.get("applicant_id"),
             "classification": classification,
@@ -149,6 +218,7 @@ def synthesize_loan_decision(applicant_data: str, profile_analysis: str, risk_an
             "risk_level": "Low" if risk_score < 25 else "Medium" if risk_score < 55 else "High",
             "confidence_level": confidence,
             "key_decision_factors": key_factors,
+            "decision_reason": decision_reason,
             "decision_rationale": f"{classification} - Risk Score: {risk_score:.1f}/100. Primary factors: {', '.join(key_factors[:3])}."
         }
 

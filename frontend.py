@@ -18,28 +18,28 @@ with st.form(key="loan_application_form"):
         st.subheader("👤 Applicant Profile")
         applicant_id = st.text_input("Applicant ID", placeholder="e.g., APP98421")
         name = st.text_input("Full Name", placeholder="e.g., Jane Doe")
-        age = st.number_input("Age", min_value=18, max_value=100, value=30)
+        age = st.number_input("Age", min_value=18, max_value=100)
         location = st.text_input("Location", placeholder="e.g., New York, NY")
 
     with col2:
         st.subheader("📊 Financial Profile")
         employment_type = st.selectbox("Employment Type", ("Full-Time", "Contract", "Freelancer"))
-        income = st.number_input("Gross Annual Income ($)", min_value=10000.0, value=75000.0, step=5000.0, format="%.2f")
+        income = st.number_input("Gross Annual Income", min_value=10000.0, step=5000.0, format="%.2f")
         existing_liabilities = st.number_input(
-            "Monthly Liabilities ($)", min_value=0.0, value=450.0,
+            "Monthly Liabilities", min_value=0.0,
             help="Monthly EMIs, credit card payments, existing loan obligations"
         )
-        credit_score = st.number_input("Credit Score", min_value=300, max_value=850, value=710)
+        credit_score = st.number_input("Credit Score", min_value=300, max_value=850)
 
     st.subheader("💰 Loan Request")
     term_col1, term_col2 = st.columns(2)
     with term_col1:
-        loan_amount = st.number_input("Loan Amount ($)", min_value=0.0, value=25000.0, step=1000.0)
+        loan_amount = st.number_input("Loan Amount", min_value=0.0, step=1000.0)
     with term_col2:
-        loan_duration = st.slider("Repayment Term (Years)", min_value=1, max_value=30, value=5)
+        loan_duration = st.slider("Repayment Term (Years)", min_value=1, max_value=30)
 
     st.markdown(f"**Application Timestamp:** `{current_timestamp}`")
-    submit = st.form_submit_button("Submit Application For Review", type="primary")
+    submit = st.form_submit_button("Submit Application For Review", type="primary", use_container_width= True)
 
 # ── Processing ─────────────────────────────────────────────────────────────────
 if submit:
@@ -156,18 +156,18 @@ if submit:
                     for anomaly in anomalies:
                         st.warning(f"🔔 {anomaly}")
 
-                # ── 5. Verdict narrative ───────────────────────────────────────
-                # verdict_text = orchestrator_output.get("verdict", "")
-                # if verdict_text:
-                #     st.markdown("### 📝 Final Verdict")
-                #     st.markdown(f"""
-                #     <div style="
-                #         background-color:#f8f9fa;
-                #         padding:20px 24px; border-radius:10px;
-                #         border-left:4px solid #1565c0;
-                #         font-size:0.95rem; line-height:1.7; color:#333;
-                #     ">{verdict_text}</div>
-                #     """, unsafe_allow_html=True)
+                # ── 5. Decision reason narrative ───────────────────────────────────────
+                decision_reason = decision.get("decision_reason", "")
+                if decision_reason:
+                    st.markdown("### 📝 Decision Reason")
+                    st.markdown(f"""
+                    <div style="
+                        background-color:#f8f9fa;
+                        padding:20px 24px; border-radius:10px;
+                        border-left:4px solid {status_color};
+                        font-size:0.95rem; line-height:1.7; color:#333;
+                    ">{decision_reason}</div>
+                    """, unsafe_allow_html=True)
 
                 # ── 6. Case record ─────────────────────────────────────────────
                 if compliance:

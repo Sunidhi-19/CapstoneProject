@@ -1,0 +1,202 @@
+================================================================================
+LOAN APPROVAL SYSTEM - SAMPLE TEST DATA (INDIA - INR)
+================================================================================
+
+================================================================================
+CASE 1: APPROVE
+================================================================================
+
+📋 Applicant ID
+APP001
+
+👤 Full Name
+Rajesh Kumar Sharma
+
+📅 Age
+35 years
+
+📍 Location
+Bangalore, Karnataka
+
+📊 Financial Profile
+
+Employment Type
+Full-Time (IT Professional)
+
+Gross Annual Income
+₹24,00,000
+
+Monthly Liabilities
+₹15,000
+
+Credit Score
+785
+
+💰 Loan Request
+
+Loan Amount
+₹40,00,000
+
+Tenure
+15 years
+
+Purpose
+Home Purchase (Apartment)
+
+Decision: APPROVE ✓
+Interest Rate: 7.2% p.a.
+Approval Date: 2026-06-23
+Reason: Excellent credit score, low monthly liability ratio, stable IT sector employment,
+         strong repayment capacity
+
+
+================================================================================
+CASE 2: REJECT
+================================================================================
+
+📋 Applicant ID
+APP002
+
+👤 Full Name
+Priya Yadav
+
+📅 Age
+28 years
+
+📍 Location
+Mumbai, Maharashtra
+
+📊 Financial Profile
+
+Employment Type
+Self-Employed (Freelancer)
+
+Gross Annual Income
+₹6,50,000
+
+Monthly Liabilities
+₹45,000
+
+Credit Score
+580
+
+💰 Loan Request
+
+Loan Amount
+₹50,00,000
+
+Tenure
+20 years
+
+Purpose
+Business Expansion
+
+Decision: REJECT ✗
+Rejection Date: 2026-06-23
+Reason: Poor credit score (580), very high monthly liability ratio (83% of gross income),
+         unstable self-employment income, insufficient repayment capacity
+
+
+================================================================================
+CASE 3: REVIEW
+================================================================================
+
+📋 Applicant ID
+APP003
+
+👤 Full Name
+Amit Patel
+
+📅 Age
+42 years
+
+📍 Location
+Ahmedabad, Gujarat
+
+📊 Financial Profile
+
+Employment Type
+Full-Time (Manufacturing Manager)
+
+Gross Annual Income
+₹12,50,000
+
+Monthly Liabilities
+₹35,000
+
+Credit Score
+680
+
+💰 Loan Request
+
+Loan Amount
+₹30,00,000
+
+Tenure
+12 years
+
+Purpose
+Home Renovation + Vehicle Loan
+
+Decision: REVIEW 🔄
+Review Date: 2026-06-23
+Reason: Borderline credit score (680), elevated monthly liability ratio (33.6%),
+         requires manual verification and additional documentation
+
+Risk Factors:
+  • Credit score in marginal range
+  • High existing monthly liabilities
+  • Multiple loan purposes indicating financial strain
+  • Recent credit inquiries suspected
+
+Next Steps:
+  • Verify employment stability with recent payslips (6 months)
+  • Request bank statements for past 12 months
+  • Validate existing loan details and payment history
+  • Manual underwriter assessment required
+
+
+================================================================================
+DECISION CRITERIA SUMMARY (INDIA - INR)
+================================================================================
+
+APPROVE Cases:
+  ✓ Credit Score: >= 750
+  ✓ Monthly Liability Ratio: < 30% of monthly income
+  ✓ Loan Tenure: Suitable for income level
+  ✓ Employment: Stable sector (2+ years minimum)
+
+REVIEW Cases:
+  ⚠ Credit Score: 650-749 (Marginal)
+  ⚠ Monthly Liability Ratio: 30-40% (Borderline)
+  ⚠ Employment: Recent changes or self-employed
+  ⚠ Multiple loan purposes or significant liability increase
+
+REJECT Cases:
+  ✗ Credit Score: < 650 (Poor)
+  ✗ Monthly Liability Ratio: > 40% (Excessive)
+  ✗ Unstable or insufficient employment history
+  ✗ Suspicious credit behavior or defaults
+
+================================================================================
+CALCULATION EXAMPLE (Monthly Liability Ratio)
+================================================================================
+
+For Applicant APP001 (Approve):
+  Monthly Income = ₹24,00,000 / 12 = ₹2,00,000
+  Existing Liabilities = ₹15,000
+  Estimated New Loan Payment = ₹35,953
+  Total Monthly Debt = ₹50,953
+  DTI Ratio = (50,953 / 2,00,000) × 100 = 25.48% ✓ Excellent
+
+For Applicant APP002 (Reject):
+  Monthly Income = ₹6,50,000 / 12 = ₹54,167
+  Monthly Liabilities = ₹45,000
+  Ratio = (45,000 / 54,167) × 100 = 83% ✗ Critical
+
+For Applicant APP003 (Review):
+  Monthly Income = ₹12,50,000 / 12 = ₹1,04,167
+  Monthly Liabilities = ₹35,000
+  Ratio = (35,000 / 1,04,167) × 100 = 33.6% ⚠ Borderline
+
+================================================================================
