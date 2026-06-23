@@ -100,7 +100,8 @@ def pass_to_orchestrator(data: dict) -> dict:
                 "risk_score": decision_data.get("risk_score", 0),
                 "risk_level": decision_data.get("risk_level", "Unknown"),
                 "confidence_level": decision_data.get("confidence_level", 0),
-                "key_factors": decision_data.get("key_decision_factors", [])
+                "key_factors": decision_data.get("key_decision_factors", []),
+                "decision_reason": decision_data.get("decision_reason", "")
             },
             # Risk metrics
             "risk": {

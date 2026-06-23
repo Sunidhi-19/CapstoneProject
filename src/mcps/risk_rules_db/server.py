@@ -85,13 +85,14 @@ def detect_anomalies(data: dict) -> list:
         anomalies.append(f"Very high DTI ratio: {dti:.1f}%")
 
     # Income-for-age check
-    age = data.get("age", 30)
-    income = data.get("gross_annual_income", 0)
-    expected_income_range_min = age * 1000  # rough minimum expectation
-    expected_income_range_max = age * 5000  # rough maximum expectation
-
-    if income < expected_income_range_min or income > expected_income_range_max:
-        anomalies.append(f"Unusual income for age {age}: ${income:,.0f}")
+    # TODO: Revisit age-based income validation - currently too vague
+    # age = data.get("age", 30)
+    # income = data.get("gross_annual_income", 0)
+    # expected_income_range_min = age * 10000  # rough minimum expectation
+    # expected_income_range_max = age * 50000  # rough maximum expectation
+    #
+    # if income < expected_income_range_min or income > expected_income_range_max:
+    #     anomalies.append(f"Unusual income for age {age}: {income:,.0f}")
 
     # Liabilities check
     if data.get("existing_liabilities", 0) > monthly_income * 0.5:
