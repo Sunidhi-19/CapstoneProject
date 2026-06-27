@@ -27,7 +27,6 @@ A modern, AI-powered loan approval system built with LangGraph, FastAPI, and Str
 │   ├── config.py              # Configuration management
 │   ├── logger.py              # Logging utilities
 │   └── mcps/
-│       ├── mcp_bridge.py      # MCP server bridge
 │       ├── applicant_db/       # Applicant database MCP
 │       ├── risk_rules_db/      # Risk rules MCP
 │       ├── notification_system/ # Notification MCP
