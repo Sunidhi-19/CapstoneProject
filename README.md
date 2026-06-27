@@ -27,8 +27,8 @@ A modern, AI-powered loan approval system built with LangGraph, FastAPI, and Str
 │   └── mcps/
 │       ├── applicant_db/       # Applicant database MCP
 │       ├── risk_rules_db/      # Risk rules MCP
-│       ├── notification_system/ # Notification MCP
-│       └── decision_synthesis/ # Decision synthesis MCP
+│       ├── decision_synthesis/ # Decision synthesis MCP
+│       └── notification_system/ # Notification MCP
 └── .env                       # Environment variables
 ```
 
