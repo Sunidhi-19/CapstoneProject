@@ -19,8 +19,8 @@ A modern, AI-powered loan approval system built with LangGraph, FastAPI, and Str
 
 ```
 ├── main.py                    # Entry point for running services
-├── gateway.py                 # FastAPI gateway and routing
 ├── frontend.py                # Streamlit web interface
+├── gateway.py                 # FastAPI gateway and routing
 ├── orchestrator.py            # LangGraph workflow orchestration
 ├── requirements.txt           # Python dependencies
 ├── src/
