@@ -24,8 +24,6 @@ A modern, AI-powered loan approval system built with LangGraph, FastAPI, and Str
 ├── orchestrator.py            # LangGraph workflow orchestration
 ├── requirements.txt           # Python dependencies
 ├── src/
-│   ├── config.py              # Configuration management
-│   ├── logger.py              # Logging utilities
 │   └── mcps/
 │       ├── applicant_db/       # Applicant database MCP
 │       ├── risk_rules_db/      # Risk rules MCP
